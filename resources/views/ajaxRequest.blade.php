@@ -150,8 +150,14 @@
       background: #ffffff;
       padding: 10px 15px;
   }
-</style>
 
+
+.product-oldprice{
+    text-decoration:line-through;
+    color: #ccc;
+    font-size: 12px;
+}
+</style>
 
 
 <div class="container">
@@ -206,9 +212,14 @@
                 <div class="product-imitation" style="background-image:url({{ route('image.displayImage',$case->image) }});background-size:cover;">
                 </div>
                 <div class="product-desc">
-                    <span class="product-price">
-                        ${{$case->sprice}}
-                    </span>
+                    
+                    <div class="product-price">
+                      <span class="product-oldprice">
+                        ${{$case->oprice}}
+                      </span>
+                      </br>
+                      ${{$case->sprice}}
+                    </div>
                     <small class="text-muted">類型:筆電</small></br>
                     <small class="text-muted">廠牌:{{$case->Vendor}}</small>
                     <a href="#" class="product-name">產品名稱:{{$case->product}}</a>
@@ -299,9 +310,10 @@ $( document ).ready(function() {
       success:function(response){
           if(response.status=='success'){
             var html = '';
+            
             for (var i = 0; i < response.itemlist.length; i++) {
                 html += '<div class="col-md-3"><div class="ibox"><div class="ibox-content product-box">';
-                html += '<div class="product-imitation" style="background-image:url(image/'+response.itemlist[i].image+');background-size:cover;"></div><div class="product-desc"><span class="product-price">$'+response.itemlist[i].sprice+'</span><small class="text-muted">類型:筆電</small></br><small class="text-muted">廠牌:'+response.itemlist[i].Vendor+'</small><a href="#" class="product-name">產品名稱:'+response.itemlist[i].product+'</a><div class="small m-t-xs">'+response.itemlist[i].produce+'</div> <div class="m-t text-righ"><a href="#" class="btn btn-xs btn-outline btn-primary">加入購物車</a><span><i class="fa fa-heart"></i></span></div></div>';
+                html += '<div class="product-imitation" style="background-image:url(image/'+response.itemlist[i].image+');background-size:cover;"></div><div class="product-desc"><div class="product-price"><span class="product-oldprice">$'+response.itemlist[i].oprice+'</span></br>$'+response.itemlist[i].sprice+'</div><small class="text-muted">類型:筆電</small></br><small class="text-muted">廠牌:'+response.itemlist[i].Vendor+'</small><a href="#" class="product-name">產品名稱:'+response.itemlist[i].product+'</a><div class="small m-t-xs">'+response.itemlist[i].produce+'</div> <div class="m-t text-righ"><a href="#" class="btn btn-xs btn-outline btn-primary">加入購物車</a><span><i class="fa fa-heart"></i></span></div></div>';
                 html += '</div></div></div>';
             }
             document.getElementById('itemlist').innerHTML = html;
