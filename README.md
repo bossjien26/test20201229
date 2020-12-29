@@ -1,5 +1,11 @@
 ## test20201229
 ## 此版本使用Laravel 8
+## ex:
+	建立專案:composer create-project laravel/laravel project     
+	建立model:php artisan make:model productlist -m
+	建立、更新db:php artisan migrate
+	建立controller AjaxController:php artisan make:controller AjaxController
+	建立controller StorageFileController:php artisan make:controller StorageFileController
 ## 需創造一個table
 	CREATE DATABASE `producttest` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
